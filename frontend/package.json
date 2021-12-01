@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@passageidentity/passage-auth": "latest",
-    "axios": "^0.24.0",
+    "@passageidentity/passage-node": "^1.0.26",
     "bootstrap": "^5.1.3",
     "js-cookie": "^3.0.1",
     "next": "12.0.4",

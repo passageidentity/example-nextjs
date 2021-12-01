@@ -1,15 +1,7 @@
 import Cookie from 'js-cookie';
-import axios from 'axios';
+import Passage from '@passageidentity/passage-node';
 
-function Dashboard({isLoading, isAuthorized, username}){
-
-  function loading() {
-    return (
-      <div className='material-icons loading'>
-        loop
-      </div>
-    );
-  }
+function Dashboard({isAuthorized, username}){
 
   function logout() {
     Cookie.remove('psg_auth_token');
@@ -65,30 +57,35 @@ function Dashboard({isLoading, isAuthorized, username}){
   return (
     <>
       <div className='bg-poly'></div>
-      { isLoading ? loading() : isAuthorized ? authorized() : unauthorized() }
+      { isAuthorized ? authorized() : unauthorized() }
     </>
   )
 };
 
 export async function getServerSideProps(context) {
-  const API_URL = "http://localhost:7000";
+  const passage = new Passage({
+    appID: process.env.PASSAGE_APP_ID,
+    apiKey: process.env.PASSAGE_API_KEY,
+    authStrategy: "HEADER",
+  });
   try {
     const authToken = context.req.cookies['psg_auth_token']
-    const response = await axios
-      .post(`${API_URL}/auth`, null, {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      })
-      const { authStatus, identifier } = response.data;
-      if (authStatus === 'success') {
-        return { props: {isLoading: false, isAuthorized: authStatus, username: identifier} };
-      }else{
-        return { props: {isLoading: false, isAuthorized: false, username: ''} };
-      }
-  } catch(error) {
-    console.log(error);
-    return { props: {isLoading: false, isAuthorized: false, username: ''} };
+    const req = {
+      headers: {
+        authorization: `Bearer ${authToken}`,
+      },
+    }
+    const userID = await passage.authenticateRequest(req);
+    if (userID) {
+      // user is authenticated
+      const { email, phone } = await passage.user.get(userID);
+      const identifier = email ? email : phone 
+      return { props: {isAuthorized: true, username: identifier} };
+    }
+  } catch (e) {
+    // authentication failed
+    console.log(e);
+    return { props: {isAuthorized: false, username: ''} };
   }
 }
 
