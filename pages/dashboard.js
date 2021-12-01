@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+import Link from 'next/link';
 import Cookie from 'js-cookie';
 import Passage from '@passageidentity/passage-node';
 
@@ -20,11 +22,11 @@ function Dashboard({isAuthorized, username}){
           <img src='launch.png' alt='People Celebrating' />
         </div>
         <div className='footer'>
-          <a href='/'>
+          <Link href='/' passHref>
             <button className='btn btn-lg' onClick={logout}>
               Log Out
             </button>
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -46,9 +48,9 @@ function Dashboard({isAuthorized, username}){
         <div className='footer'>
           Sign in or register for an account to proceed.
           <br />
-          <a href='/'>
+          <Link href='/' passHref>
             <button className='btn btn-lg'>Sign In or Register</button>
-          </a>
+          </Link>
         </div>
       </div>
     );
@@ -59,32 +61,33 @@ function Dashboard({isAuthorized, username}){
       <div className='bg-poly'></div>
       { isAuthorized ? authorized() : unauthorized() }
     </>
-  )
+  );
 };
 
 export async function getServerSideProps(context) {
+  // getServerSideProps runs server-side only and will never execute on the client browser
+  // this allows the safe use of a private Passage API Key
   const passage = new Passage({
     appID: process.env.PASSAGE_APP_ID,
     apiKey: process.env.PASSAGE_API_KEY,
     authStrategy: "HEADER",
   });
   try {
-    const authToken = context.req.cookies['psg_auth_token']
+    const authToken = context.req.cookies['psg_auth_token'];
     const req = {
       headers: {
         authorization: `Bearer ${authToken}`,
       },
-    }
+    };
     const userID = await passage.authenticateRequest(req);
     if (userID) {
       // user is authenticated
       const { email, phone } = await passage.user.get(userID);
-      const identifier = email ? email : phone 
+      const identifier = email ? email : phone; 
       return { props: {isAuthorized: true, username: identifier} };
     }
-  } catch (e) {
+  } catch (error) {
     // authentication failed
-    console.log(e);
     return { props: {isAuthorized: false, username: ''} };
   }
 }

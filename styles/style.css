@@ -47,13 +47,13 @@ body {
   margin: 2em;
 }
 
-.footer > a > button {
+.footer button {
   background-color: #5e68beff;
   color: white;
   margin: 1em;
 }
 
-.footer > a > button:hover {
+.footer button:hover {
   color: white;
 }
 
