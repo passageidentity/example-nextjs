@@ -33,7 +33,7 @@ export default function Home() {
 }
 ```
 
-## Getting Authentication Status and User Information
+## Getting Authentication Status and User Information with Server-Side Rendering
 After the user has logged in with Passage, all requests need to be authenticated using the JWT provided by Passage. The [Passage Node.js SDK](https://www.npmjs.com/package/@passageidentity/passage-node) to authenticate requests and retrieve user data for your application. 
 
 In this example, we handle authentication securely in Next.js's server-side rendering function [`getServerSideProps()`](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering). Per Next.js documention you can import modules in top-level scope for use in `getServerSideProps`. Imports used in `getServerSideProps` will not be bundled for the client-side. This means you can write server-side code directly in `getServerSideProps`.
