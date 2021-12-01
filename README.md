@@ -1,6 +1,6 @@
 # Passage Next.js Example App
 
-This example application uses the [Passage Auth Element](https://www.npmjs.com/package/@passageidentity/passage-node) in a Next.js application to authenticate users using biometrics or magic links.
+This example application uses the [Passage Auth Element](https://www.npmjs.com/package/@passageidentity/passage-auth) in a Next.js application to authenticate users using biometrics or magic links.
 [Passage Node.js SDK](https://www.npmjs.com/package/@passageidentity/passage-node) is used to verify users on authenticated endpoints. To run this example application, follow the instructions below.
 
 ## Configure Your Environment Variables
@@ -15,7 +15,7 @@ The easiest way to add authentication to a web frontend is with a Passage Auth c
 ```
 npm i --save @passageidentity/passage-auth
 ```
-Importing `@passageidentity/passage-auth` triggers a side-effect that will register the three custom elements with the client browser for usage. Since Next.js pre-renders pages on the server this presents a common issue with using web components, such as the passage elements, in pre-rendered pages - when the server side pre-render occurs there is no client window defined to call `window.customElements.define()` on, which results in an error being thrown.
+Importing `@passageidentity/passage-auth` triggers a side-effect that will register the three custom elements with the client browser for usage. Since Next.js pre-renders pages on the server this presents a common issue with using web components, such as the Passage elements, in pre-rendered pages - when the server side pre-render occurs there is no client window defined to call `window.customElements.define()` on, which results in an error being thrown.
 
 The most common solution when using custom elements in pre-rendered applications is to defer the registration of the custom element to a lifecycle hook so that the code is only executed when the client app is executed in browser. This is done in this example in [pages/index.js](https://github.com/passageidentity/example-nextjs/blob/main/pages/index.js):
 ```javascript
