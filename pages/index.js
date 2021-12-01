@@ -8,8 +8,6 @@ export default function Home() {
     require('@passageidentity/passage-auth');
   }, []);
 
-  const appId = process.env.PASSAGE_APP_ID;
-
   return (
     <div>
       <div className='bg-poly'></div>
@@ -21,7 +19,7 @@ export default function Home() {
 
       <div className={styles['form-container']}>
         <passage-auth
-          app-id={appId}
+          app-id={process.env.PASSAGE_APP_ID}
         />
       </div>
 
