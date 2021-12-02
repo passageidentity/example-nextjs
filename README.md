@@ -8,6 +8,23 @@ This example application uses the [Passage Auth Element](https://www.npmjs.com/p
 1. Copy the EXAMPLE.env file to your own .env file.
 2. Replace the example variables with your own Passage App ID and API Key. You can get these from the [Passage Console](https://console.passage.id).
 
+## Running the Example
+Install the package dependencies using node:
+```
+npm i
+```
+
+To serve the application in development mode:
+```
+npm run dev
+```
+
+Or to build and run a production build:
+```
+npm run build
+npm run start
+```
+
 # Using Passage with Next.js
 
 ## Importing and Using the Passage-Auth Custom Element
