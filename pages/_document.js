@@ -7,7 +7,6 @@ export default function Document() {
   return (
     <Html>
       <Head>
-          <title>Try Passage</title>
           <link rel="icon" href="/favicon.ico" />
           <link
             href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap"
