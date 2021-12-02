@@ -2,7 +2,7 @@ import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
-export default function Home() {
+export default function Home({appId}) {
 
   useEffect(()=>{
     require('@passageidentity/passage-auth');
@@ -19,7 +19,7 @@ export default function Home() {
 
       <div className={styles['form-container']}>
         <passage-auth
-          app-id={process.env.PASSAGE_APP_ID}
+          app-id={appId}
         />
       </div>
 
@@ -32,4 +32,12 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps(){
+  return {
+    props: {
+      appId: process.env.PASSAGE_APP_ID
+    }
+  }
 }
