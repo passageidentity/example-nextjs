@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import Cookie from 'js-cookie';
+// this import is only included in the server build since its only used in getServerSideProps
 import Passage from '@passageidentity/passage-node';
 
 function Dashboard({isAuthorized, username}){

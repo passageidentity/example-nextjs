@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Passage Next.js Example App
 
-## Getting Started
+This example application uses the [Passage Auth Element](https://www.npmjs.com/package/@passageidentity/passage-auth) in a Next.js application to authenticate users using biometrics or magic links.
+[Passage Node.js SDK](https://www.npmjs.com/package/@passageidentity/passage-node) is used to verify users on authenticated endpoints. To run this example application, follow the instructions below.
 
-First, run the development server:
+## Configure Your Environment Variables
 
-```bash
-npm run dev
-# or
-yarn dev
+1. Copy the EXAMPLE.env file to your own .env file.
+2. Replace the example variables with your own Passage App ID and API Key. You can get these from the [Passage Console](https://console.passage.id).
+
+# Using Passage with Next.js
+
+## Importing and Using the Passage-Auth Custom Element
+The easiest way to add authentication to a web frontend is with a Passage Auth custom element. First you'll need to install the [passage-auth](https://www.npmjs.com/package/@passageidentity/passage-auth) package from npm:
+```
+npm i --save @passageidentity/passage-auth
+```
+Importing `@passageidentity/passage-auth` triggers a side-effect that will register the three custom elements with the client browser for usage. Since Next.js pre-renders pages on the server this presents a common issue with using web components, such as the Passage elements, in pre-rendered pages - when the server side pre-render occurs there is no client window defined to call `window.customElements.define()` on, which results in an error being thrown.
+
+The most common solution when using custom elements in pre-rendered applications is to defer the registration of the custom element to a lifecycle hook so that the code is only executed when the client app is executed in browser. This is done in this example in [pages/index.js](https://github.com/passageidentity/example-nextjs/blob/main/pages/index.js):
+```javascript
+export default function Home() {
+
+    useEffect(()=>{
+        require('@passageidentity/passage-auth');
+    }, []);
+
+    return (
+        <div>
+            ...
+        </div>
+    )
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting Authentication Status and User Information with Server-Side Rendering
+After the user has logged in with Passage, all requests need to be authenticated using the JWT provided by Passage. The [Passage Node.js SDK](https://www.npmjs.com/package/@passageidentity/passage-node) to authenticate requests and retrieve user data for your application. 
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+In this example, we handle authentication securely in Next.js's server-side rendering function [`getServerSideProps()`](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering). Per Next.js documention you can import modules in top-level scope for use in `getServerSideProps`. Imports used in `getServerSideProps` will not be bundled for the client-side. This means you can write server-side code directly in `getServerSideProps`.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+The JWT provided by Passage is stored in both cookies and localstorage. Next.js provides the cookies set for an application to `getServerSideProps` which allows passing the JWT from the client browser to the server to handle authentication.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This is done in this example in [pages/dashboard.js](https://github.com/passageidentity/example-nextjs/blob/main/pages/dashboard.js).
