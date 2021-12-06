@@ -1,75 +1,97 @@
-html,
 body {
-  color: #444547;
-  font-family: "Nunito", sans-serif;
+  margin: 0px;
+  height: 100vh;
 }
 
-.bg-poly {
-  clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
-
-  background: #5e68beff;
-  width: 100vw;
-  height: 50vh;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
+:root{
+  --passage-body-font-family: "DM Sans";
+  --passage-header-font-family: "DM Sans";
+  --passage-control-border-radius: 75px;
+  --passage-button-border-radius: 75px;
+  --passage-control-border-color: #263768;
+  --passage-body-font-size: 20px;
+  --passage-button-font-size: 24px;
+  --passage-button-font-weight: 400;
+  --passage-header-font-size: 32px;
+  --passage-header-font-weight: 700;
+  --passage-header-text-color: #263768;
+  --passage-button-background-color: #27417E;
+  --passage-button-hover-background-color: #2D68A6;
+  --passage-button-active-background-color: #2D68A6;
+  --passage-button-width: 200px;
+  --passage-container-max-width: 500px;
 }
 
-.header {
-  color: white;
-  text-align: center;
-  font-size: 1.75em;
-  margin: 2em;
+.button {
+  font-weight: 700;
+  font-size: 24px;
+  height: 75px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 75px;
+  border: none;
+  cursor: pointer;
 }
 
-.header > strong {
-  font-family: "Lexend Deca", sans-serif;
-  font-size: 2em;
+.button.secondary {
+  background-color: #FFFFFF;
+  color: #263768;
 }
 
-.img-container {
-  width: 300px;
-  height: 400px;
-  margin-left: auto;
-  margin-right: auto;
+.button.secondary:hover{
+  background-color: #F3FDF8;
 }
 
-.img-container > img {
-  max-width: 100%;
-  max-height: 100%;
+.button.secondary:active{
+  background-color: #F3FDF8;
+  box-shadow: none;
 }
 
-.footer {
-  text-align: center;
-  font-size: 1.75em;
-  margin: 2em;
+.button.primary{
+  background-color: #27417E;
+  color: white
 }
 
-.footer button {
-  background-color: #5e68beff;
-  color: white;
-  margin: 1em;
+.button.primary:hover{
+  background-color: #2D68A6;
 }
 
-.footer button:hover {
-  color: white;
+.button.primary:active{
+  background-color: #2D68A6;
+  box-shadow: none;
 }
 
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
+/* for shorter 13" dekstop screens */
+@media screen and (max-height: 845px) {
+  
+  .button {
+    font-size: 20px;
   }
-  to {
-    transform: rotate(359deg);
+
+  :root{
+    --passage-body-font-size: 20px;
+    --passage-button-font-size: 20px;
+    --passage-header-font-size: 28px;
   }
 }
 
-.loading{
-  font-size: 48px !important;
-  text-align: center;
-  display: block !important;
-  margin-top: 50vh;
-  animation: rotation 2s infinite linear;
+/* mobile rules begin here */
+@media screen and (max-width: 760px) {
+
+  .button {
+    font-size: 16px;
+    height: 60px;
+  }
+
 }
+
+@media screen and (max-width: 650px){
+  :root{
+    --passage-body-font-size: 16px;
+    --passage-button-font-size: 16px;
+    --passage-header-font-size: 24px;
+    --passage-button-width: auto;
+    --passage-container-max-width: 245px;
+  }
+}
+
+

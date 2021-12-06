@@ -16,6 +16,7 @@ export default function Document() {
             href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap"
             rel="stylesheet"
           />
+          <link href='https://fonts.googleapis.com/css?family=DM Sans:400,700' rel='stylesheet'></link>
         </Head>
       <body>
         <Main />
