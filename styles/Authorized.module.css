@@ -120,3 +120,9 @@
         height: 260px;
     }
 }
+
+@media screen and (max-height: 765px){
+    .bodyClass{
+        height: calc(100vh + 45px);
+    }
+}
