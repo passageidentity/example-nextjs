@@ -12,14 +12,12 @@ function Banner({authorized}){
     router.push('/')
   }
 
-  function logoutComponent(){
+  function logoutButton(){
     if(router.route !== '/dashboard' || !authorized){
       return null
     }
     return(
-      <>
-        <div className={styles.logout} onClick={logout}>Logout</div>
-      </>
+      <div className={styles.logout} onClick={logout}>Logout</div>
     )
   }
 
@@ -28,7 +26,7 @@ function Banner({authorized}){
       <Link href="https://passage.id/" passHref><div className={styles.passageLogo}></div></Link>
       <div className={styles.spacer}></div>
       <div className={styles.links}>
-      {logoutComponent()}
+      {logoutButton()}
       <Link href="https://passage.id/"><div className={styles.home}><span className={styles.text}>Go to Passage</span><div className={styles.icon}></div></div></Link>
       </div>
     </div>
