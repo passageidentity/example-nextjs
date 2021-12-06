@@ -4,20 +4,21 @@ import styles from '../styles/Banner.module.css';
 
 function Banner({authorized}){
 
+  const router = useRouter()
+
   function logout(){
     document.cookie = "psg_auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     localStorage.removeItem("psg_auth_token");
-    window.location.href="/"
+    router.push('/')
   }
 
   function logoutComponent(){
-    const router = useRouter()
     if(router.route !== '/dashboard' || !authorized){
       return null
     }
     return(
       <>
-        <div className={styles.logout} onclick={logout}>Logout</div>
+        <div className={styles.logout} onClick={logout}>Logout</div>
       </>
     )
   }

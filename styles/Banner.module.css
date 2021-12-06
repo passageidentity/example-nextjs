@@ -31,6 +31,7 @@
     text-decoration-color: #263768;
     text-decoration: underline;
     cursor: pointer;
+    align-items: center;
   }
   
  .text {
