@@ -22,7 +22,7 @@ function Unauthorized(){
         <div className={styles.returnHome}>Return to home to <Link href='/' className={styles.link} passHref>sign up</Link></div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export default Unauthorized;

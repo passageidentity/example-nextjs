@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.css';
 import { useEffect } from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
 import Layout from '../components/layout';
 
 export default function Home({appId}) {
@@ -30,5 +30,5 @@ export async function getStaticProps(){
     props: {
       appId: process.env.PASSAGE_APP_ID
     }
-  }
+  };
 }

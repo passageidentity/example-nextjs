@@ -1,5 +1,5 @@
-import Banner from '../components/banner'
-import styles from '../styles/Layout.module.css'
+import Banner from '../components/banner';
+import styles from '../styles/Layout.module.css';
 
 function Layout({children, authorized, bodyClass}){
   return(
@@ -12,7 +12,7 @@ function Layout({children, authorized, bodyClass}){
       </div>
       <div className={styles.mainFooter}></div>
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

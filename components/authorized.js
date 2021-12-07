@@ -19,7 +19,7 @@ function Authorized({username}){
         <div className={styles.subMessage}>Implement risk-free authentication with two lines of code.</div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export default Authorized;
