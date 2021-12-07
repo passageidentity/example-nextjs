@@ -1,68 +1,14 @@
-/* eslint-disable @next/next/no-img-element */
-import Link from 'next/link';
-import Cookie from 'js-cookie';
+import Unauthorized from '../components/unauthorized';
+import Authorized from '../components/authorized';
 // this import is only included in the server build since its only used in getServerSideProps
 import Passage from '@passageidentity/passage-node';
 
 function Dashboard({isAuthorized, username}){
 
-  function logout() {
-    Cookie.remove('psg_auth_token');
-    localStorage.removeItem('psg_auth_token');
+  if(!isAuthorized){
+    return <Unauthorized />;
   }
-
-  function authorized() {
-    return (
-      <div id='authorized'>
-        <div className='header'>
-          <span id='userEmail'>{username}</span> signed in
-          <br />
-          with <strong>Passage.</strong>
-        </div>
-        <div className='img-container'>
-          <img src='launch.png' alt='People Celebrating' />
-        </div>
-        <div className='footer'>
-          <Link href='/' passHref>
-            <button className='btn btn-lg' onClick={logout}>
-              Log Out
-            </button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  function unauthorized(){
-    return (
-      <div id='unauthorized'>
-        <div className='header'>
-          oops
-          <br />
-          you are <strong>Unauthorized.</strong>
-        </div>
-
-        <div className='img-container'>
-          <img src='/error.png' alt='People Sad' />
-        </div>
-
-        <div className='footer'>
-          Sign in or register for an account to proceed.
-          <br />
-          <Link href='/' passHref>
-            <button className='btn btn-lg'>Sign In or Register</button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <div className='bg-poly'></div>
-      { isAuthorized ? authorized() : unauthorized() }
-    </>
-  );
+  return <Authorized username={username}/>;
 };
 
 export async function getServerSideProps(context) {
