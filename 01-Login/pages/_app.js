@@ -7,10 +7,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Banner></Banner>
-      <Component {...pageProps} />
+      <div className={styles.mainContainer}>
+        <Component {...pageProps} />
+      </div>
       <div className={styles.footer}>
-        Simple biometric authentication <br/>
-        powered by Passage       
+        Learn more with our <u><a href="https://docs.passage.id">Documentation</a></u> and <u><a href="https://github.com/passageidentity">Github</a></u>.
       </div>
     </>
   );
