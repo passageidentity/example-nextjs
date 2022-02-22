@@ -1,5 +1,5 @@
 {
-  "name": "example-nextjs",
+  "name": "passage-next-app",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,14 +9,13 @@
   },
   "dependencies": {
     "@passageidentity/passage-auth": "latest",
-    "@passageidentity/passage-node": "^1.0.26",
-    "js-cookie": "^3.0.1",
-    "next": "12.0.4",
+    "@passageidentity/passage-node": "^1.2.0",
+    "next": "12.0.10",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "eslint": "7.32.0",
-    "eslint-config-next": "12.0.4"
+    "eslint": "8.8.0",
+    "eslint-config-next": "12.0.10"
   }
 }
