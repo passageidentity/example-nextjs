@@ -1,20 +1,19 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
 
-import Banner from '../components/banner'
-import styles from '../styles/App.module.css'
+import Banner from '../components/banner';
+import styles from '../styles/App.module.css';
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <Banner></Banner>
-      <div clasName={styles.mainContainer}>
-       <Component {...pageProps} />
-      </div>
+      <Component {...pageProps} />
       <div className={styles.footer}>
-       Learn more with our <a href="https://docs.passage.id">Documentation</a> and <a href="https://github.com/passageidentity">Github</a>.     
+        Simple biometric authentication <br/>
+        powered by Passage       
       </div>
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
