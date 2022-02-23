@@ -1,14 +1,31 @@
-import Unauthorized from '../components/unauthorized';
-import Authorized from '../components/authorized';
 // this import is only included in the server build since its only used in getServerSideProps
 import Passage from '@passageidentity/passage-node';
+import styles from '../styles/App.module.css'
 
 function Dashboard({isAuthorized, username}){
 
-  if(!isAuthorized){
-    return <Unauthorized />;
-  }
-  return <Authorized username={username}/>;
+  const authorizedBody = 
+  <>
+      You successfully signed in with Passage.
+      <br/><br/>
+      Your username is: <b>{username}</b>
+  </>
+
+  const unauthorizedBody = 
+  <>
+      You have not logged in and cannot view the dashboard.
+      <br/><br/>
+      <a href="/" className={styles.link}>Login to continue.</a>
+  </>
+
+  return (
+      <div className={styles.dashboard}>
+          <div className={styles.title}>{isAuthorized ? 'Welcome!' : 'Unauthorized'}</div>
+          <div className={styles.message}>
+              { isAuthorized ? authorizedBody : unauthorizedBody }
+          </div>
+      </div>
+  );
 };
 
 export async function getServerSideProps(context) {
