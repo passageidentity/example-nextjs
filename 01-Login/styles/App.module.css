@@ -14,17 +14,17 @@
 
 .dashboard{
     padding: 30px 30px 20px;
-  }
-  .title {
+}
+.title {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 30px;
-  }
-  .message {
+}
+.message {
     overflow-wrap: anywhere;
-  }
-  .link {
+}
+.link {
     color: black;
     text-decoration-color: black;
-  }
+}
   
