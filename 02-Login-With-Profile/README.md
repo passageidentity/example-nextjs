@@ -28,7 +28,7 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 # Using Passage with Next.js
 
-## Importing and Using the Passage-Auth Custom Element
+## Importing and Using the Passage Custom Elements
 The easiest way to add authentication to a web frontend is with a Passage Auth custom element. First you'll need to install the [passage-elements](https://www.npmjs.com/package/@passageidentity/passage-elements) package from npm:
 ```
 npm i --save @passageidentity/passage-elements
@@ -48,6 +48,17 @@ export default function Home() {
             ...
         </div>
     )
+}
+```
+
+Similarly for the dashboard in this example we use the passage-profile element to display user information. The profile element is imported in the same way the auth element is imported:
+```javascript
+function Dashboard({isAuthorized, appID}){
+
+  useEffect(()=>{
+    require('@passageidentity/passage-elements/passage-profile');
+  }, []);
+  
 }
 ```
 
