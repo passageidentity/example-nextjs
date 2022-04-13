@@ -36,8 +36,9 @@ function Dashboard({isAuthorized, appID}){
 export async function getServerSideProps(context) {
   // getServerSideProps runs server-side only and will never execute on the client browser
   // this allows the safe use of a private Passage API Key
+  const appID = process.env.PASSAGE_APP_ID;
   const passage = new Passage({
-    appID: process.env.PASSAGE_APP_ID,
+    appID,
     apiKey: process.env.PASSAGE_API_KEY,
     authStrategy: "HEADER",
   });
