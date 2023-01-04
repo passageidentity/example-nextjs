@@ -6,7 +6,7 @@ This example application uses the [Passage Auth Element](https://www.npmjs.com/p
 ## Configure Your Environment Variables
 
 1. Copy the EXAMPLE.env file to your own .env file.
-2. Replace the example variables with your own Passage App ID and API Key. You can get these from the [Passage Console](https://console.passage.id).
+2. Replace the example variables with your own Passage App ID and API Key. You can get these from the [Passage Console](https://console.passage.id).  The App ID is found on the main Dashboard page, and the API Key can be created and retrieved from the `Setting/API Keys` page.  **Note that both are required.**
 
 ## Getting Started
 
