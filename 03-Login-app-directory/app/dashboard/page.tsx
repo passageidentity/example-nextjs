@@ -1,47 +1,14 @@
-import { NextPage } from "next";
-import Link from "next/link";
-import { getCurrentUser } from "@/actions/getCurrentUser";
-import LogoutButton from "@/components/LogoutButton";
+import { FC } from "react";
+import DashboardContent from "@/components/DashboardContent";
 
-interface DashboardProps {}
+interface pageProps {}
 
-const Dashboard: NextPage<DashboardProps> = async ({}) => {
-  const { props } = await getCurrentUser();
+const page: FC<pageProps> = ({}) => {
   return (
-    <main className="flex justify-center p-24 ">
-      <div className="border flex justify-center border-black rounded-xl w-96">
-        <div className="p-10 pb-5">
-          <div className="font-bold text-2xl mb-5">
-            {props.isAuthorized ? "Welcome!" : "Unauthorized"}
-          </div>
-          <div className="break-normal">
-            {props.isAuthorized ? (
-              <>
-                <p>
-                  You successfully signed in with Passage.
-                  <br />
-                  Your username is: <b>{props.username}</b>
-                </p>
-
-                <LogoutButton />
-              </>
-            ) : (
-              <>
-                You have not logged in and cannot view the dashboard.
-                <br /> <br />
-                <Link
-                  href="/"
-                  className="underline font-bold hover:text-blue-600 "
-                >
-                  Login to continue.
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-    </main>
+    <>
+      <DashboardContent />
+    </>
   );
 };
 
-export default Dashboard;
+export default page;
