@@ -7,15 +7,10 @@ export async function getCurrentUser() {
     apiKey: process.env.NEXT_PUBLIC_PASSAGE_API_KEY!,
     authStrategy: "HEADER",
   });
-  // console.log(passage.appID, passage.apiKey)
-  // console.log("after passage")
 
- 
   try {
     const cookieStore = cookies();
-    // console.log(cookieStore);
-    const authToken = cookieStore.get('psg_auth_token');
-    // console.log('authtoken:', authToken)
+    const authToken = cookieStore.get("psg_auth_token");
     const req = {
       headers: {
         authorization: `Bearer ${authToken?.value}`,

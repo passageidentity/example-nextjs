@@ -3,13 +3,10 @@ import Link from "next/link";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import LogoutButton from "@/components/LogoutButton";
 
-interface DashboardProps {
+interface DashboardProps {}
 
-}
-
-const Dashboard: NextPage<DashboardProps> = async ({ }) => {
+const Dashboard: NextPage<DashboardProps> = async ({}) => {
   const { props } = await getCurrentUser();
-  // console.log(props);
   return (
     <main className="flex justify-center p-24 ">
       <div className="border flex justify-center border-black rounded-xl w-96">
