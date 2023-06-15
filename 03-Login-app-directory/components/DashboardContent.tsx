@@ -1,6 +1,6 @@
 "use client";
 import { FC, useEffect, useState } from "react";
-import { getSessionInfo, PassageUserInfo } from "@/actions/getSessionInfo";
+import { getCurrentUserInfo, PassageUserInfo } from "@/actions/getCurrentUserInfo";
 import LogoutButton from "./LogoutButton";
 import Link from "next/link";
 import { format } from "date-fns";
@@ -15,7 +15,7 @@ const DashboardContent: FC<DashboardContentProps> = ({}) => {
 
   useEffect(() => {
     const fetchSessionInfo = async () => {
-      const sessionInfo = await getSessionInfo();
+      const sessionInfo = await getCurrentUserInfo();
       setUserInfo(sessionInfo.userInfo);
       setIsLoading(false);
     };
