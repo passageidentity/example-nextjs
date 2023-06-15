@@ -48,7 +48,6 @@ const DashboardContent: FC<DashboardContentProps> = ({}) => {
                 Login to continue.
               </Link>
             </p>
-            <LogoutButton />
           </div>
         </div>
       </main>
