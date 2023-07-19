@@ -8,9 +8,9 @@ interface LogoutButtonProps {}
 const LogoutButton: FC<LogoutButtonProps> = ({}) => {
   const router = useRouter();
   const passage = new Passage(process.env.NEXT_PUBLIC_PASSAGE_APP_ID!);
-  const session = passage.getCurrentSession();
+  // const session = passage.getCurrentSession();
   const handleLogout = () => {
-    session.signOut();
+    passage.signOut();
     router.push("/");
   };
 
